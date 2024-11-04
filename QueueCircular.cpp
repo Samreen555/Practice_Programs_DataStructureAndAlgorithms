@@ -1,0 +1,161 @@
+//#include <iostream>
+//#include <string>
+//using namespace std;
+//
+//typedef int ItemType; // Define the type of items to be stored in the queue
+//
+//class CircularQueue {
+//private:
+//    int front;        // Index of the front item
+//    int rear;         // Index of the rear item
+//    int maxQueue;     // Maximum size of the queue
+//    ItemType* items;  // DYNAMIC ARRAY
+//    int currentSize;  // Current number of elements in the queue
+//
+//public:
+//    CircularQueue(); // Default constructor
+//    CircularQueue(int max); // Parameterized constructor
+//    ~CircularQueue(); // Destructor
+//    bool IsEmpty() const;
+//    bool IsFull() const;
+//    void Enqueue(ItemType newItem);
+//    void Dequeue(ItemType& item);
+//    void display_forwards() const;
+//    void display_backwards() const;
+//    int search(int value) const;
+//    void display_size() const;
+//    ItemType display_front() {
+//        if (!IsEmpty()) {
+//            return items[front];
+//        }
+//        else {
+//            cout << "Queue is empty!" << endl;
+//            return -1; // Return an invalid value if empty
+//        }
+//    }
+//
+//    ItemType display_rear() {
+//        if (!IsEmpty()) {
+//            int rearIndex = (rear - 1 + maxQueue) % maxQueue; // Adjust for wrap-around
+//            return items[rearIndex];
+//        }
+//        else {
+//            cout << "Queue is empty!" << endl;
+//            return -1; // Return an invalid value if empty
+//        }
+//    }
+//
+//};
+//
+//CircularQueue::CircularQueue() {
+//    front = 0;
+//    rear = -1;
+//    maxQueue = 10;
+//    items = new ItemType[maxQueue];
+//    currentSize = 0;
+//}
+//
+//CircularQueue::CircularQueue(int max) {
+//    front = 0;
+//    rear = -1;
+//    maxQueue = max;
+//    items = new ItemType[max];
+//    currentSize = 0;
+//}
+//
+//CircularQueue::~CircularQueue() {
+//    delete[] items;
+//}
+//
+//bool CircularQueue::IsEmpty() const {
+//    return currentSize == 0; // Queue is empty if the current size is zero
+//}
+//
+//bool CircularQueue::IsFull() const {
+//    return ((rear + 1) % maxQueue == front); // Queue is full if current size equals maxQueue
+//}
+//
+//void CircularQueue::Enqueue(ItemType newItem) {
+//    if (IsFull()) {
+//        cout << "Queue is full\n";
+//        return;
+//    }
+//    rear = (rear + 1) % maxQueue; // Circular increment
+//    items[rear] = newItem;
+//    currentSize++;
+//}
+//
+//void CircularQueue::Dequeue(ItemType& item) {
+//    if (IsEmpty()) {
+//        cout << "Queue is empty\n";
+//        return;
+//    }
+//    item = items[front];
+//    front = (front + 1) % maxQueue; // Circular increment
+//    currentSize--;
+//}
+//
+//void CircularQueue::display_forwards() const {
+//    cout << "Queue items (forwards): ";
+//    for (int i = 0; i < currentSize; i++) {
+//        cout << items[(front + i) % maxQueue] << " "; // Display items in order
+//    }
+//    cout << endl;
+//}
+//
+//void CircularQueue::display_backwards() const {
+//    cout << "Queue items (backwards): ";
+//    for (int i = currentSize - 1; i >= 0; i--) {
+//        cout << items[(front + i) % maxQueue] << " "; // Display items in reverse order
+//    }
+//    cout << endl;
+//}
+//
+//int CircularQueue::search(int value) const {
+//    for (int i = 0; i < currentSize; i++) {
+//        if (items[(front + i) % maxQueue] == value) {
+//            return (front + i) % maxQueue; // Return the index if found
+//        }
+//    }
+//    return -1; // Return -1 if not found
+//}
+//
+//void CircularQueue::display_size() const {
+//    cout << "Current queue size: " << currentSize << endl; // Display the current size
+//}
+//
+//// Example usage of the CircularQueue class
+//int main() {
+//    int maxQueue, value, dequeuedItem, searchValue;
+//
+//    cout << "Enter the limit of the queue: ";
+//    cin >> maxQueue;
+//    CircularQueue queue(maxQueue);
+//
+//    cout << "Enter the values in the queue:\n";
+//    for (int i = 0; i < maxQueue; i++) {
+//        cin >> value;
+//        queue.Enqueue(value);
+//    }
+//
+//    queue.display_forwards();
+//    queue.display_size();
+//
+//    queue.Dequeue(dequeuedItem);
+//    cout << "Dequeued item: " << dequeuedItem << endl;
+//
+//    queue.display_backwards();
+//    queue.display_size();
+//
+//    cout << "Enter the value you want to search:\n";
+//    cin >> searchValue;
+//    int index = queue.search(searchValue);
+//    if (index != -1) {
+//        cout << "Value " << searchValue << " found at index: " << index << endl;
+//    }
+//    else {
+//        cout << "Value " << searchValue << " not found in queue." << endl;
+//    }
+//
+//    return 0;
+//}
